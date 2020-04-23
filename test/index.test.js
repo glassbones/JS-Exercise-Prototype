@@ -116,6 +116,7 @@ describe('Instances of Car', () => {
   })
   it('STRETCH: drive method when NOT enough fuel increases miles by drivable miles', () => {
     batmobile.fill(10)
+    
     batmobile.drive(201)
     expect(batmobile.odometer).to.equal(200)
   })
