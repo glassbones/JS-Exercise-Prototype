@@ -78,32 +78,25 @@ function Car(model, milesPerGallon) {
   this.odometer = 0;
 }
 Car.prototype.fill = function(gallons){
-  console.log("Filling Tank");
-  console.log(`input = ${gallons}`)
-  console.log(`Tank before: ${this.tank}`)
   this.tank += gallons;
-  console.log(`Tank filled: ${this.tank}`)
 }
-
 Car.prototype.drive = function(distance){
-  // if tank < required fuel
-  console.log(`Drive Starting!`)
- 
-  console.log(`Enough Fuel!\nDriving ${distance} miles`)
-  if (distance > this.tank*this.milesPerGallon){
-
+    //if distance is too far fuel supply
+    if (distance > this.tank*this.milesPerGallon){
+    // subtract distance from fuel supply anyways and store it as debt (a negative number)
     let debt = this.tank*this.milesPerGallon - distance;
+    // add debt (a negative number to odometer)
     this.odometer += debt;
-    this.odometer += distance //50
+    // add distance to odemeter 
+    this.odometer += distance;
+    // use all the fuel in the tank
     this.tank = 0;
     return `I ran out of fuel at ${this.odometer} miles!`
   }
-  else (distance < this.tank*this.milesPerGallon){
-    this.odometer += distance //50
-    this.tank -= distance/this.milesPerGallon
-  }
-
-
+  //if distance isn't too far fuel supply
+  else (distance < this.tank*this.milesPerGallon)
+    this.odometer += distance;
+    this.tank -= distance/this.milesPerGallon;
 }
 
 /*
